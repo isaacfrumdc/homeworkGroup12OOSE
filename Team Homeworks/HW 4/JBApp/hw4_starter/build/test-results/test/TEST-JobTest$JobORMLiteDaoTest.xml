@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="JobTest$JobORMLiteDaoTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-09-30T00:03:04" hostname="MacBook-Pro-7.local" time="0.039">
+  <properties/>
+  <testcase name="testDeleteForeignMultipleEmployees()" classname="JobTest$JobORMLiteDaoTest" time="0.039"/>
+  <system-out><![CDATA[2021-09-29 20:03:04,143 [WARNING] ANDROID Unable to get new instance of class com.j256.ormlite.android.AndroidLogBackend$AndroidLogBackendFactory, so had to use local log: com.j256.ormlite.android.AndroidLogBackend$AndroidLogBackendFactory
+2021-09-29 20:03:04,147 [WARNING] COMMONS_LOGGING Unable to get new instance of class com.j256.ormlite.logger.CommonsLoggingLogBackend$CommonsLoggingLogBackendFactory, so had to use local log: org/apache/commons/logging/LogFactory
+2021-09-29 20:03:04,150 [WARNING] LOG4J2 Unable to get new instance of class com.j256.ormlite.logger.Log4j2LogBackend$Log4j2LogBackendFactory, so had to use local log: org/apache/logging/log4j/LogManager
+2021-09-29 20:03:04,151 [WARNING] LOG4J Unable to get new instance of class com.j256.ormlite.logger.Log4jLogBackend$Log4jLogBackendFactory, so had to use local log: org/apache/log4j/Priority
+]]></system-out>
+  <system-err><![CDATA[[Test worker] INFO com.j256.ormlite.table.TableUtils - creating table 'jobs'
+[Test worker] INFO com.j256.ormlite.table.TableUtils - executed create table statement changed 0 rows: CREATE TABLE IF NOT EXISTS `jobs` (`id` INTEGER PRIMARY KEY AUTOINCREMENT , `title` VARCHAR NOT NULL , `datePosted` TIMESTAMP NOT NULL , `deadline` TIMESTAMP , `domain` VARCHAR NOT NULL , `location` VARCHAR NOT NULL , `fullTime` BOOLEAN NOT NULL , `salaryBased` BOOLEAN NOT NULL , `requirements` VARCHAR , `payAmount` INTEGER NOT NULL , `employer_id` INTEGER NOT NULL ) 
+[Test worker] INFO com.j256.ormlite.table.TableUtils - clearing table 'jobs' with 'DELETE FROM `jobs`
+]]></system-err>
+</testsuite>
