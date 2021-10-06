@@ -1,6 +1,6 @@
 #set( $title = "Show all jobs" )
 #parse("public/top.vm")
-<body>
+
     #if ($jobs)
     <h1>List of all available jobs:</h1>
     <div>

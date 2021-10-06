@@ -12,10 +12,7 @@ import spark.Spark;
 import spark.template.velocity.VelocityTemplateEngine;
 
 import java.sql.SQLException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Server {
 
@@ -34,7 +31,6 @@ public class Server {
     }
 
     public static void main(String[] args) throws SQLException{
-
         final int PORT_NUM = 7000;
         Spark.port(PORT_NUM);
 
@@ -42,13 +38,16 @@ public class Server {
             Map<String, Object> model = new HashMap<>();
             if (req.cookie("username") != null)
                 model.put("username", req.cookie("username"));
+            if (req.cookie("colorChoice") != null)
+                model.put("colorChoice", req.cookie("colorChoice"));
             return new ModelAndView(model, "public/index.vm");
         }, new VelocityTemplateEngine());
 
         Spark.post("/", (req, res) -> {
             String username = req.queryParams("username");
-            String color = req.queryParams("color");
+            String color = req.queryParams("colorChoice");
             res.cookie("username", username);
+            res.cookie("colorChoice", color);
             res.redirect("/");
             return null;
         });
@@ -138,7 +137,7 @@ public class Server {
             return new ModelAndView(model, "public/search.vm");
         }, new VelocityTemplateEngine());
 
-        Spark.post("/search", (req, res) -> {
+        /*Spark.post("/search", (req, res) -> {
             String query = req.queryParams("query");
 
             GenericRawResults<Employer> empResults = getEmployerORMLiteDao().queryRaw("SELECT * FROM " +
@@ -156,6 +155,32 @@ public class Server {
             res.status(201);
             res.type("application/json");
             return new Gson().toJson(jobLs.toString());
+        });*/
+
+        Spark.post("/search", (req, res) -> {
+            String query = req.queryParams("query");
+
+            List<Job> matchingJobs = new ArrayList<>();
+            for(Object j : getJobORMLiteDao().queryForAll()) {
+                if(jobMatches((Job)j, query)) {
+                    matchingJobs.add((Job)j);
+                }
+            }
+
+            res.status(200);
+            res.type("application/json");
+            return new Gson().toJson(matchingJobs);
         });
+
+    }
+
+    private static boolean jobMatches(Job j, String search){
+        if(j.getTitle().toLowerCase().contains(search.toLowerCase())) {
+            return true;
+        }
+        if(j.getDomain().toLowerCase().contains(search.toLowerCase())) { //real estate, software, agent, software eng. R&D
+            return true;
+        }
+        return j.getEmployer().getName().toLowerCase().equals(search.toLowerCase());
     }
 }

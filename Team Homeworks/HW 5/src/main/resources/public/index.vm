@@ -2,7 +2,7 @@
 #parse("public/top.vm")
 
 #if($username)
-<h2>Welcome to JBApp <i>$username</i></h2>
+<h2>Welcome to JBApp <span style=$colorChoice><i>$username</i></span></h2>
 <div>
     <p><a href="/employers">Show all employers</a></p>
     <p><a href="/addemployers">Add an employer</a></p>
@@ -19,6 +19,16 @@
             <input type="text" placeholder="username" name="username"/>
         </div>
         <br/>
+
+        <div>
+            <label for="colorChoice">Color: </label>
+            <select name = "colorChoice">
+                <option value = "color:green" selected>Green</option>
+                <option value = "color:blue">Blue</option>
+                <option value = "color:red">Red</option>
+            </select>
+        </div>
+        <br />
     <button>Sign in</button>
     </fieldset>
 </form>

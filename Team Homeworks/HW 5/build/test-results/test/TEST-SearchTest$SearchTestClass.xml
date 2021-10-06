@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="SearchTest$SearchTestClass" tests="14" skipped="0" failures="0" errors="0" timestamp="2021-10-06T22:29:39" hostname="LAPTOP-5T3PRJM5" time="0.604">
+  <properties/>
+  <testcase name="testCompanyCaseInsensitive()" classname="SearchTest$SearchTestClass" time="0.174"/>
+  <testcase name="testDomainSurroundingSpaces()" classname="SearchTest$SearchTestClass" time="0.042"/>
+  <testcase name="sqlInjection()" classname="SearchTest$SearchTestClass" time="0.042"/>
+  <testcase name="testTitleCaseInsensitive()" classname="SearchTest$SearchTestClass" time="0.038"/>
+  <testcase name="testIncompleteTitle()" classname="SearchTest$SearchTestClass" time="0.033"/>
+  <testcase name="testDomainCorrect()" classname="SearchTest$SearchTestClass" time="0.031"/>
+  <testcase name="testTitleTooMuchInfo()" classname="SearchTest$SearchTestClass" time="0.029"/>
+  <testcase name="testGeneralString()" classname="SearchTest$SearchTestClass" time="0.032"/>
+  <testcase name="testDomainSubstring()" classname="SearchTest$SearchTestClass" time="0.032"/>
+  <testcase name="testEmptyDatabase()" classname="SearchTest$SearchTestClass" time="0.012"/>
+  <testcase name="testEmptyStringDatabase()" classname="SearchTest$SearchTestClass" time="0.033"/>
+  <testcase name="testCompanyTooMuch()" classname="SearchTest$SearchTestClass" time="0.034"/>
+  <testcase name="testCompanySubstring()" classname="SearchTest$SearchTestClass" time="0.033"/>
+  <testcase name="testDomainExtraSpaces()" classname="SearchTest$SearchTestClass" time="0.033"/>
+  <system-out><![CDATA[2021-10-06 18:29:39,295 [WARNING] ANDROID Unable to get new instance of class com.j256.ormlite.android.AndroidLogBackend$AndroidLogBackendFactory, so had to use local log: com.j256.ormlite.android.AndroidLogBackend$AndroidLogBackendFactory
+2021-10-06 18:29:39,302 [WARNING] COMMONS_LOGGING Unable to get new instance of class com.j256.ormlite.logger.CommonsLoggingLogBackend$CommonsLoggingLogBackendFactory, so had to use local log: org/apache/commons/logging/LogFactory
+2021-10-06 18:29:39,304 [WARNING] LOG4J2 Unable to get new instance of class com.j256.ormlite.logger.Log4j2LogBackend$Log4j2LogBackendFactory, so had to use local log: org/apache/logging/log4j/LogManager
+2021-10-06 18:29:39,306 [WARNING] LOG4J Unable to get new instance of class com.j256.ormlite.logger.Log4jLogBackend$Log4jLogBackendFactory, so had to use local log: org/apache/log4j/Priority
+]]></system-out>
+  <system-err><![CDATA[[Test worker] INFO com.j256.ormlite.table.TableUtils - creating table 'employers'
+[Test worker] INFO com.j256.ormlite.table.TableUtils - executed create table statement changed 0 rows: CREATE TABLE IF NOT EXISTS `employers` (`id` INTEGER PRIMARY KEY AUTOINCREMENT , `name` VARCHAR NOT NULL , `sector` VARCHAR NOT NULL , `summary` VARCHAR ,  UNIQUE (`name`)) 
+[Test worker] INFO com.j256.ormlite.table.TableUtils - creating table 'jobs'
+[Test worker] INFO com.j256.ormlite.table.TableUtils - executed create table statement changed 0 rows: CREATE TABLE IF NOT EXISTS `jobs` (`id` INTEGER PRIMARY KEY AUTOINCREMENT , `title` VARCHAR NOT NULL , `datePosted` TIMESTAMP , `deadline` TIMESTAMP , `domain` VARCHAR , `location` VARCHAR , `fullTime` BOOLEAN , `salaryBased` BOOLEAN , `requirements` VARCHAR , `payAmount` INTEGER , `employer_id` integer references employers(id) on delete cascade on UPDATE CASCADE ) 
+[Test worker] INFO com.j256.ormlite.table.TableUtils - clearing table 'jobs' with 'DELETE FROM `jobs`
+[Test worker] INFO com.j256.ormlite.table.TableUtils - clearing table 'employers' with 'DELETE FROM `employers`
+[Test worker] INFO com.j256.ormlite.table.TableUtils - clearing table 'jobs' with 'DELETE FROM `jobs`
+[Test worker] INFO com.j256.ormlite.table.TableUtils - clearing table 'employers' with 'DELETE FROM `employers`
+[Test worker] INFO com.j256.ormlite.table.TableUtils - clearing table 'jobs' with 'DELETE FROM `jobs`
+[Test worker] INFO com.j256.ormlite.table.TableUtils - clearing table 'employers' with 'DELETE FROM `employers`
+[Test worker] INFO com.j256.ormlite.table.TableUtils - clearing table 'jobs' with 'DELETE FROM `jobs`
+[Test worker] INFO com.j256.ormlite.table.TableUtils - clearing table 'employers' with 'DELETE FROM `employers`
+[Test worker] INFO com.j256.ormlite.table.TableUtils - clearing table 'jobs' with 'DELETE FROM `jobs`
+[Test worker] INFO com.j256.ormlite.table.TableUtils - clearing table 'employers' with 'DELETE FROM `employers`
+[Test worker] INFO com.j256.ormlite.table.TableUtils - clearing table 'jobs' with 'DELETE FROM `jobs`
+[Test worker] INFO com.j256.ormlite.table.TableUtils - clearing table 'employers' with 'DELETE FROM `employers`
+[Test worker] INFO com.j256.ormlite.table.TableUtils - clearing table 'jobs' with 'DELETE FROM `jobs`
+[Test worker] INFO com.j256.ormlite.table.TableUtils - clearing table 'employers' with 'DELETE FROM `employers`
+[Test worker] INFO com.j256.ormlite.table.TableUtils - clearing table 'jobs' with 'DELETE FROM `jobs`
+[Test worker] INFO com.j256.ormlite.table.TableUtils - clearing table 'employers' with 'DELETE FROM `employers`
+[Test worker] INFO com.j256.ormlite.table.TableUtils - clearing table 'jobs' with 'DELETE FROM `jobs`
+[Test worker] INFO com.j256.ormlite.table.TableUtils - clearing table 'employers' with 'DELETE FROM `employers`
+[Test worker] INFO com.j256.ormlite.table.TableUtils - clearing table 'jobs' with 'DELETE FROM `jobs`
+[Test worker] INFO com.j256.ormlite.table.TableUtils - clearing table 'employers' with 'DELETE FROM `employers`
+[Test worker] INFO com.j256.ormlite.table.TableUtils - clearing table 'jobs' with 'DELETE FROM `jobs`
+[Test worker] INFO com.j256.ormlite.table.TableUtils - clearing table 'employers' with 'DELETE FROM `employers`
+[Test worker] INFO com.j256.ormlite.table.TableUtils - clearing table 'jobs' with 'DELETE FROM `jobs`
+[Test worker] INFO com.j256.ormlite.table.TableUtils - clearing table 'employers' with 'DELETE FROM `employers`
+[Test worker] INFO com.j256.ormlite.table.TableUtils - clearing table 'jobs' with 'DELETE FROM `jobs`
+[Test worker] INFO com.j256.ormlite.table.TableUtils - clearing table 'employers' with 'DELETE FROM `employers`
+[Test worker] INFO com.j256.ormlite.table.TableUtils - clearing table 'jobs' with 'DELETE FROM `jobs`
+[Test worker] INFO com.j256.ormlite.table.TableUtils - clearing table 'employers' with 'DELETE FROM `employers`
+]]></system-err>
+</testsuite>
