@@ -1,0 +1,36 @@
+#set( $title = "Add an employer" )
+#parse("public/top.vm")
+<body>
+
+<h2>Add a new employer</h2>
+<legend>Add an employer:</legend>
+<form action="/employers" method="post" >
+    <fieldset>
+        <div>
+            <label for="name">Name: </label>
+            <input type="text" name="name" placeholder="name" id="name" required />
+        </div>
+        <br />
+        <div>
+            <label for="sector">Sector: </label>
+            <select name = "sector">
+                <option value = "Technology" selected>Technology</option>
+                <option value = "Food/Beverage">Food/Beverage</option>
+                <option value = "Health Care">Health Care</option>
+                <option value = "Financial">Financial</option>
+                <option value = "Energy">Energy</option>
+                <option value = "Real Estate">Real Estate</option>
+                <option value = "Other">Other</option>
+            </select>
+        </div>
+        <br />
+        <div>
+            <label for="summary">Summary: </label>
+            <textarea row="10" cols="40" name="summary" id="summary"></textarea>
+        </div>
+        <br />
+        <input type="submit" value="Add" id="submitAddEmployer" />
+    </fieldset>
+</form>
+
+#parse("public/bottom.vm")

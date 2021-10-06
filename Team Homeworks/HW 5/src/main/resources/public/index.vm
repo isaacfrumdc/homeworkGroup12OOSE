@@ -1,0 +1,27 @@
+#set( $title = "Welcome Page" )
+#parse("public/top.vm")
+
+#if($username)
+<h2>Welcome to JBApp <i>$username</i></h2>
+<div>
+    <p><a href="/employers">Show all employers</a></p>
+    <p><a href="/addemployers">Add an employer</a></p>
+    <p><a href="/jobs">Show all jobs</a></p>
+    <p><a href="/addjobs">Add a job</a></p>
+    <p><a href="/search">Search jobs</a></p>
+</div>
+#else
+<h1>Please provide a username!</h1>
+<form action="/" method="post">
+    <fieldset>
+        <div>
+            <label for="username">Username: </label>
+            <input type="text" placeholder="username" name="username"/>
+        </div>
+        <br/>
+    <button>Sign in</button>
+    </fieldset>
+</form>
+#end
+
+#parse("public/bottom.vm")

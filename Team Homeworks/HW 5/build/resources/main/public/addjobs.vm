@@ -1,0 +1,89 @@
+#set( $title = "Add a new job" )
+#parse("public/top.vm")
+<body>
+
+<h2>Add a job</h2>
+<legend>Add a job:</legend>
+<form action="/employers" method="post" >
+    <fieldset>
+        <div>
+            <label for="title">Title: </label>
+            <input type="text" name="title" placeholder="Required" id="title" required />
+        </div>
+        <br />
+
+        <div>
+            <label for="employer">Employer: </label>
+            <select name = "Employer">
+                #foreach($emp in $employers)
+                    <option value = "$emp.name" selected>$emp.name</option>
+                #end
+            </select>
+        </div>
+        <br />
+
+        <div>
+            <label for="datePosted">Date posted: </label>
+            <input type="date" id="datePosted" name="datePosted" placeholder="mm/dd/yyyy" required>
+        </div>
+        <br />
+
+        <div>
+            <label for="deadline">Deadline: </label>
+            <input type="date" id="deadline" name="deadline" placeholder="mm/dd/yyyy" required>
+        </div>
+        <br />
+
+        <div>
+            <label for="domain">Domain: </label>
+            <input type="text" name="domain" placeholder="" id="domain" required/>
+        </div>
+        <br />
+
+        <div>
+            <label for="location">Location: </label>
+            <input type="text" name="location" placeholder="" id="location" required/>
+        </div>
+        <br />
+
+        <div>
+            <label for="fulltime">Full time: </label>
+            <select name = "Full time:">
+                <option value = "Yes" selected>Yes</option>
+                <option value = "No" selected>No</option>
+            </select>
+        </div>
+        <br />
+
+        <div>
+            <label for="wage">Salary/hourly: </label>
+            <select name = "Salary/hourly:">
+                <option value = "Salary" selected>Salary</option>
+                <option value = "Hourly" selected>Hourly</option>
+            </select>
+        </div>
+        <br />
+
+        <div>
+            <label for="payment">Payment: </label>
+            <input type="number" name="payment" placeholder="$100000" id="payment" required />
+        </div>
+        <br />
+
+        <div>
+            <label for="title">Title: </label>
+            <input type="text" name="title" placeholder="Required" id="title" required />
+        </div>
+        <br />
+
+        <div>
+            <label for="requirements">Requirements: </label>
+            <textarea row="10" cols="40" name="requirements" id="requirements"></textarea>
+        </div>
+        <br />
+
+        <input type="submit" value="Add" id="submitAddJob" />
+    </fieldset>
+</form>
+
+#parse("public/bottom.vm")

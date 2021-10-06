@@ -1,0 +1,18 @@
+#set( $title = "Show all jobs" )
+#parse("public/top.vm")
+<body>
+    #if ($jobs)
+    <h1>List of all available jobs:</h1>
+    <div>
+        <ol>
+        <p>
+            #foreach($jo in $jobs)
+                <li>
+                    <i>$jo.employer.name</i>, a <i>$jo.domain</i> company, recruits for a <i>$jo.title</i> position!
+                </li>
+            #end
+            </p>
+        </ol>
+    </div>
+    #end
+#parse("public/bottom.vm")
