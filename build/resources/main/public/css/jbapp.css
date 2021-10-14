@@ -1,0 +1,40 @@
+h1, h2 {
+    font-family: "Book Antiqua", serif;
+    font-style: italic;
+    padding: 10px;
+}
+.container, form {
+    background: #566573;
+    text-align: left;
+    border-radius: 9px;
+    padding: 10px 30px 10px 30px;
+    float: left;
+}
+
+form button, form input[type=submit] {
+    background: #273746 ;
+    color: floralwhite;
+    font-family: "Book Antiqua", serif ;
+    font-weight: bolder;
+    font-size: 20px;
+    padding: 0 40px 0 40px;
+    border-radius: 0 16px 0 16px;
+    margin:0 auto;
+    display:block;
+}
+
+.container, form label {
+    padding: 22px;
+    font-size: 15px;
+    color: floralwhite;
+    font-family: Bahnschrift, serif;
+}
+
+form input[type=text], input[type=number], textarea, select {
+    padding: 5px;
+    margin: 5px;
+    font-family: "Book Antiqua", serif;
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: 6px;
+}

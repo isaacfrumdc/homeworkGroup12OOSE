@@ -1,0 +1,18 @@
+#set( $title = "Show Employers" )
+#parse("public/top.vm")
+<body>
+    #if ($employers)
+    <h2>List of all employers:</h2>
+    <div class="container">
+        <ol>
+            #foreach($em in $employers)
+                    <li>
+                        <i>$em.name</i> is a ($em.sector) company: $em.summary.
+                        <button type="button" id="$em.name">X</button>
+                    </li>
+            #end
+        </ol>
+    </div>
+    #end
+<script src="js/employers.js"></script>
+#parse("public/bottom.vm")
