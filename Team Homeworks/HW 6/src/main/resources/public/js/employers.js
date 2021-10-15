@@ -12,10 +12,9 @@ function addEmployer(employerName, employerSector, employerSummary) {
     ).then(res => window.location.reload = window.location.reload(true));
 }
 
-const name = document.getElementById("eName");
-const sector = document.getElementById("eSector");
-const summary = document.getElementById("eSummary");
-
+const name = document.getElementById("eName").value;
+const sector = document.getElementById("eSector").value;
+const summary = document.getElementById("eSummary").value;
 
 document.getElementById("addbtn").addEventListener("click", addEmployer.bind(this, {name, sector, summary}));
 
