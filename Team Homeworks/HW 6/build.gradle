@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id "com.heroku.sdk.heroku-gradle" version "2.0.0"
 }
 
 group 'org.example'
@@ -19,10 +20,29 @@ dependencies {
     implementation 'com.sparkjava:spark-core:2.9.3'
     implementation 'com.google.code.gson:gson:2.8.8'
     implementation 'com.squareup.okhttp3:okhttp:4.9.1'
-
     implementation 'com.sparkjava:spark-template-velocity:2.7.1'
+    implementation 'org.postgresql:postgresql:42.2.17'
+
 }
 
 test {
     useJUnitPlatform()
+}
+
+jar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    manifest {
+        attributes 'Main-Class' : 'Main'
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+heroku {
+    appName = "group12-hw6"
+    jdkVersion = 8
+    processTypes(
+            web: "java -jar build/libs/hw6_starter-1.0-SNAPSHOT.jar"
+    )
 }

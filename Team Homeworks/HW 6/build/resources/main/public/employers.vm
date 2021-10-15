@@ -12,13 +12,13 @@
                     </li>
             #end
         </ol>
-        <form>
+        <form onsubmit="return addEmployer();">>
             Add new:
             <input type="text" placeholder="Required" id="eName" name = "eName" required>
             <input type="text" id="eSector" name = "eSector">
             <input type="text" id="eSummary" name = "eSummary">
             <button id="addE">&#10004;</button>
-        </form>
+        </>
     </div>
     #end
 <script src="js/employers.js"></script>
