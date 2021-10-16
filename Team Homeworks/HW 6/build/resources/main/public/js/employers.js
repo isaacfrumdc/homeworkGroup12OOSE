@@ -1,5 +1,5 @@
 function deleteEmployer(employerName) {
-    fetch('/employers?name=' + employerName, {
+    fetch('http://localhost:7000/employers?name=' + employerName, {
             method: 'Delete',
         }
     ).then(res => window.location.reload = window.location.reload(true));
@@ -11,21 +11,22 @@ Array.prototype.forEach.call(delButtons, function(button) {
 });
 
 
-
 function addEmployer() {
-    fetch('/employers?name=' + document.getElementById("eName").value+ document.getElementById("eSector").value + document.getElementById("eSummary").value, {
-            method: 'Post',
-        }
-    ).then(res => window.location.reload = window.location.reload(true));
+    const name = document.getElementById("name").value;
+    const sector = document.getElementById("sector").value;
+    const summary = document.getElementById("summary").value;
+    if (name != null && sector != null) {
+        fetch('http://localhost:7000/employers?name='+name+ '&sector=' + sector+ '&summary=' + summary,{
+                method: 'Post',
+            }
+        ).then(res => window.location.reload = window.location.reload(true));
+        return true;
+    }
+    else {
+        return false;
+    }
 }
-// name = document.getElementById("eName").value;
-// sector = document.getElementById("eSector").value;
-// summary = document.getElementById("eSummary").value;
-//
-// let addBtn = document.getElementById("addE");
-// addBtn.addEventListener('click', addEmployer.bind(null, {name, sector, summary}))
 
-document.getElementById("addE").addEventListener("click", addEmployer.bind(this, {name, sector, summary}));
 
 
 

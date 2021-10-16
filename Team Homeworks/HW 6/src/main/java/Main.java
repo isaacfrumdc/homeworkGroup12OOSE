@@ -8,7 +8,6 @@ import model.Employer;
 import spark.ModelAndView;
 import spark.Spark;
 import spark.template.velocity.VelocityTemplateEngine;
-
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.Connection;
@@ -18,6 +17,7 @@ import java.sql.Statement;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 import static spark.Spark.port;
 
@@ -46,7 +46,7 @@ public class Main {
     public static void main(String[] args) {
         //Spark.port(PORT_NUM);
 
-        //hkl
+
         port(getPort());
         Spark.staticFiles.location("/public");
         workWithDatabase();
@@ -108,48 +108,49 @@ public class Main {
     }
 
 
-    private static Connection getConnection() throws URISyntaxException, SQLException {
+    private static Connection getConnection() throws URISyntaxException, SQLException, ClassNotFoundException {
         String databaseUrl = System.getenv("DATABASE_URL");
+        //String databaseUrl = "postgres://mqsahtfubqyeih:b4917bfd056e8b77598724acd846c001c085644586f96e76e480c9f71bf82479@ec2-35-175-17-88.compute-1.amazonaws.com:5432/d4dnccd6jo2kha";
         if (databaseUrl == null) {
             // Not on Heroku, so use SQLite
             return DriverManager.getConnection("jdbc:sqlite:./JBApp.db");
         }
-
         URI dbUri = new URI(databaseUrl);
-
+        //String host = dbUri.getHost();
+        //int port2 = dbUri.getPort();
+        //String path = dbUri.getPath();
         String username = dbUri.getUserInfo().split(":")[0];
         String password = dbUri.getUserInfo().split(":")[1];
-        String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':'
-                + dbUri.getPort() + dbUri.getPath() + "?sslmode=require";
-
+        String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath() ;
+        Class.forName("org.postgresql.Driver");
+        //System.out.print(username);
+        //System.out.print(password);
+        //System.out.print(dbUrl);
+        //System.out.print(dbUri.getHost());
+        //System.out.print(dbUri.getPort());
+        //System.out.print(dbUri.getPath());
         return DriverManager.getConnection(dbUrl, username, password);
     }
 
-    private static void workWithDatabase(){
+    private static void workWithDatabase() {
         try (Connection conn = getConnection()) {
             String sql = "";
 
-            if ("SQLite".equalsIgnoreCase(conn.getMetaData().getDatabaseProductName())) { // running locally
-                sql = "CREATE TABLE IF NOT EXISTS employers (id INTEGER PRIMARY KEY, " +
-                        "name VARCHAR(100) NOT NULL UNIQUE, sector VARCHAR(100), summary VARCHAR(10000));";
-            }
-            else {
-                sql = "CREATE TABLE IF NOT EXISTS employers (id serial PRIMARY KEY, name VARCHAR(100) NOT NULL UNIQUE," +
-                        " sector VARCHAR(100), summary VARCHAR(10000));";
-            }
+            //System.out.println(conn.getMetaData().getDatabaseProductName());
+//            if ("SQLite".equalsIgnoreCase(conn.getMetaData().getDatabaseProductName())) { // running locally
+//                sql = "CREATE TABLE IF NOT EXISTS employers (id INTEGER PRIMARY KEY, " +
+//                        "name VARCHAR(100) NOT NULL UNIQUE, sector VARCHAR(100), summary VARCHAR(10000));";
+//            }
+//            else {
+//                sql = "CREATE TABLE IF NOT EXISTS employers (id serial PRIMARY KEY, name VARCHAR(100) NOT NULL UNIQUE," +
+//                        " sector VARCHAR(100), summary VARCHAR(10000));";
+//            }
+//
+//            Statement st = conn.createStatement();
+//            st.execute(sql);
 
-            Statement st = conn.createStatement();
-            st.execute(sql);
 
-            //test
-            //sql = "INSERT INTO employers(name, sector, summary) VALUES ('Boeing2', 'Aerospace2', '');";
-            //st.execute(sql);
-
-            //test
-            //sql = "INSERT INTO employers(name, sector, summary) VALUES ('test', 'test', '');";
-            //st.execute(sql);
-
-        } catch (URISyntaxException | SQLException e) {
+        } catch (URISyntaxException | SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }

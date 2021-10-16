@@ -21,7 +21,7 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.8'
     implementation 'com.squareup.okhttp3:okhttp:4.9.1'
     implementation 'com.sparkjava:spark-template-velocity:2.7.1'
-    implementation 'org.postgresql:postgresql:42.2.17'
+    implementation 'org.postgresql:postgresql:42.2.24'
 
 }
 
