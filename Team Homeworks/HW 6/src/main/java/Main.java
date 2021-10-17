@@ -110,25 +110,15 @@ public class Main {
 
     private static Connection getConnection() throws URISyntaxException, SQLException, ClassNotFoundException {
         String databaseUrl = System.getenv("DATABASE_URL");
-        //String databaseUrl = "postgres://mqsahtfubqyeih:b4917bfd056e8b77598724acd846c001c085644586f96e76e480c9f71bf82479@ec2-35-175-17-88.compute-1.amazonaws.com:5432/d4dnccd6jo2kha";
         if (databaseUrl == null) {
             // Not on Heroku, so use SQLite
             return DriverManager.getConnection("jdbc:sqlite:./JBApp.db");
         }
         URI dbUri = new URI(databaseUrl);
-        //String host = dbUri.getHost();
-        //int port2 = dbUri.getPort();
-        //String path = dbUri.getPath();
         String username = dbUri.getUserInfo().split(":")[0];
         String password = dbUri.getUserInfo().split(":")[1];
         String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath() ;
         Class.forName("org.postgresql.Driver");
-        //System.out.print(username);
-        //System.out.print(password);
-        //System.out.print(dbUrl);
-        //System.out.print(dbUri.getHost());
-        //System.out.print(dbUri.getPort());
-        //System.out.print(dbUri.getPath());
         return DriverManager.getConnection(dbUrl, username, password);
     }
 
