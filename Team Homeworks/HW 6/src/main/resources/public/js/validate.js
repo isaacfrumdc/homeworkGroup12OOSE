@@ -9,8 +9,8 @@ function validateUsername() {
 }
 
 function validateEmployer() {
-    const name = document.getElementById("eName");
-    const sector = document.getElementById("eSector");
+    const name = document.getElementById("name");
+    const sector = document.getElementById("sector");
 
     /* Check employer name */
     if (name.value.length < 2 || name.value.length > 150 || name.value.contains("$")
