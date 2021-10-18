@@ -73,6 +73,13 @@ public class Main {
             List<Employer> ls = getEmployerORMLiteDao().queryForAll();
             Map<String, Object> model = new HashMap<String, Object>();
             model.put("employers", ls);
+            //this is just for deployment in heroku
+            Connection conn = getConnection();
+            if (!("SQLite".equalsIgnoreCase(conn.getMetaData().getDatabaseProductName()))) {
+                String getSQL = "SELECT * from employers;";
+                Statement st = conn.createStatement();
+                st.execute(getSQL);
+            }
             return new ModelAndView(model, "public/employers.vm");
         }, new VelocityTemplateEngine());
 
@@ -83,6 +90,13 @@ public class Main {
             String summary = req.queryParams("summary");
             Employer em = new Employer(name, sector, summary);
             getEmployerORMLiteDao().create(em);
+            //this is just for deployment in heroku
+            Connection conn = getConnection();
+            if (!("SQLite".equalsIgnoreCase(conn.getMetaData().getDatabaseProductName()))) {
+                String insertSQL = "INSERT INTO employers(name, sector, summary) VALUES (" +name +", "+sector +", "+summary + ");";
+                Statement st = conn.createStatement();
+                st.execute(insertSQL);
+            }
             res.status(201);
             res.type("application/json");
             return new Gson().toJson(em.toString());
@@ -126,19 +140,17 @@ public class Main {
         try (Connection conn = getConnection()) {
             String sql = "";
 
-            //System.out.println(conn.getMetaData().getDatabaseProductName());
-//            if ("SQLite".equalsIgnoreCase(conn.getMetaData().getDatabaseProductName())) { // running locally
-//                sql = "CREATE TABLE IF NOT EXISTS employers (id INTEGER PRIMARY KEY, " +
-//                        "name VARCHAR(100) NOT NULL UNIQUE, sector VARCHAR(100), summary VARCHAR(10000));";
-//            }
-//            else {
-//                sql = "CREATE TABLE IF NOT EXISTS employers (id serial PRIMARY KEY, name VARCHAR(100) NOT NULL UNIQUE," +
-//                        " sector VARCHAR(100), summary VARCHAR(10000));";
-//            }
-//
-//            Statement st = conn.createStatement();
-//            st.execute(sql);
+            //this is just for deployment in heroku
+            if (!("SQLite".equalsIgnoreCase(conn.getMetaData().getDatabaseProductName()))) {
+                sql = "CREATE TABLE IF NOT EXISTS employers (id serial PRIMARY KEY, name VARCHAR(100) NOT NULL UNIQUE," +
+                " sector VARCHAR(100), summary VARCHAR(10000));";
+                Statement st = conn.createStatement();
+                st.execute(sql);
 
+                sql = "SELECT * from employers;";
+                st.execute(sql);
+
+            }
 
         } catch (URISyntaxException | SQLException | ClassNotFoundException e) {
             e.printStackTrace();
